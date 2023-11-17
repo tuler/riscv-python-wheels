@@ -43,7 +43,7 @@ for wheel_file in $(ls "$wheels_folder"/*.whl | sort -f); do
         version=$(basename "$version_file")
 
         # Add the version to the index.html file
-        link="<a href='https://raw.githubusercontent.com/lucas-marc/riscv-wheels/main/wheels/$version' data-requires-python='&gt;=3.10.0'>$version</a><br/>"
+        link="<a href='https://raw.githubusercontent.com/think-and-dev/riscv-python-wheels/main/wheels/$version' data-requires-python='&gt;=3.10.0'>$version</a><br/>"
         echo "  <li>$link</li>" >> "$index_file"
     done
     echo "</ul></body></html>" >> "$index_file"
