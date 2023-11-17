@@ -17,19 +17,19 @@ for wheel_file in $(ls "$wheels_folder"/*.whl | sort); do
     package_name=$(basename "$wheel_file" | cut -d'-' -f1)
     
     #change _ and . to - in package name
-    package_name=$(echo "$package_name" | sed 's/_/-/g')
-    package_name=$(echo "$package_name" | sed 's/\./-/g')
+    package_normalized_name=$(echo "$package_name" | sed 's/_/-/g')
+    package_normalized_name=$(echo "$package_normalized_name" | sed 's/\./-/g')
 
     # force lowercase package name
-    package_name=$(echo "$package_name" | tr '[:upper:]' '[:lower:]')
+    package_normalized_name=$(echo "$package_normalized_name" | tr '[:upper:]' '[:lower:]')
     
     # Add the package name to the index.html file only if it's not already there
-    if ! grep -q "$package_name" "$general_index_file"; then
-        echo "<div class='package' ><a href='$package_name/'>$package_name</a></div>" >> "$general_index_file"
+    if ! grep -q "$package_normalized_name" "$general_index_file"; then
+        echo "<div class='package' ><a href='$package_normalized_name/'>$package_normalized_name</a></div>" >> "$general_index_file"
     fi
 
     # Create a folder for the package in the pip-index folder
-    package_folder="$pip_index_folder/$package_name"
+    package_folder="$pip_index_folder/$package_normalized_name"
     mkdir -p "$package_folder"
 
     # Create an index.html file for the package
