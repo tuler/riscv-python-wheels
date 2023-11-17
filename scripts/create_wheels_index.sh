@@ -11,21 +11,22 @@ mkdir -p "$pip_index_folder"
 general_index_file="$pip_index_folder/index.html"
 echo "<!DOCTYPE html><html><head><title>Links for RISC-V Wheels</title></head><body><h1>Links for RISC-V Wheels</h1>" > "$general_index_file"
 
-# Loop through all the wheels in the wheels folder
-for wheel_file in "$wheels_folder"/*.whl; do
+# Loop through all the wheel files
+for wheel_file in $(ls "$wheels_folder"/*.whl | sort); do
     # Get the package name from the wheel file name
     package_name=$(basename "$wheel_file" | cut -d'-' -f1)
     
-    #change _ to - in package name
+    #change _ and . to - in package name
     package_name=$(echo "$package_name" | sed 's/_/-/g')
+    package_name=$(echo "$package_name" | sed 's/\./-/g')
 
+    # force lowercase package name
+    package_name=$(echo "$package_name" | tr '[:upper:]' '[:lower:]')
+    
     # Add the package name to the index.html file only if it's not already there
     if ! grep -q "$package_name" "$general_index_file"; then
         echo "<div class='package' ><a href='$package_name/'>$package_name</a></div>" >> "$general_index_file"
     fi
-
-    
-
 
     # Create a folder for the package in the pip-index folder
     package_folder="$pip_index_folder/$package_name"
