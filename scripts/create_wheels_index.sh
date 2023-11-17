@@ -12,7 +12,7 @@ general_index_file="$pip_index_folder/index.html"
 echo "<!DOCTYPE html><html><head><title>Links for RISC-V Wheels</title></head><body><h1>Links for RISC-V Wheels</h1>" > "$general_index_file"
 
 # Loop through all the wheel files
-for wheel_file in $(ls "$wheels_folder"/*.whl | sort); do
+for wheel_file in $(ls "$wheels_folder"/*.whl | sort -f); do
     # Get the package name from the wheel file name
     package_name=$(basename "$wheel_file" | cut -d'-' -f1)
     
@@ -48,3 +48,4 @@ for wheel_file in $(ls "$wheels_folder"/*.whl | sort); do
     done
     echo "</ul></body></html>" >> "$index_file"
 done
+echo "</body></html>" >> "$general_index_file"
