@@ -15,6 +15,9 @@ echo "<!DOCTYPE html><html><head><title>Links for RISC-V Wheels</title></head><b
 for wheel_file in "$wheels_folder"/*.whl; do
     # Get the package name from the wheel file name
     package_name=$(basename "$wheel_file" | cut -d'-' -f1)
+    
+    #change _ to - in package name
+    package_name=$(echo "$package_name" | sed 's/_/-/g')
 
     # Add the package name to the index.html file only if it's not already there
     if ! grep -q "$package_name" "$general_index_file"; then
