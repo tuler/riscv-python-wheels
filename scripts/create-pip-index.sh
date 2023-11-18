@@ -1,11 +1,35 @@
 #!/bin/bash
 
-# Set the paths for the wheels and pip-index folders
-wheels_folder="./wheels"
-pip_index_folder="./pip-index"
+# Set the parameters from the command line arguments
+if [ $# -eq 3 ]; then
+    wheels_folder="$1"
+    pip_index_folder="$2"
+    whl_binary_base_url="$3"
+else
+    echo "Usage: $0 <wheels_folder> <pip_index_folder> <whl_binary_base_url>"
+    exit 1
+fi
+
+# Verify that the wheels folder exists
+if [ ! -d "$wheels_folder" ]; then
+    echo "The wheels folder does not exist: $wheels_folder"
+    exit 0
+fi
+
+# Verify that there are wheel files in the wheels folder
+if [ ! "$(ls -A "$wheels_folder")" ]; then
+    echo "No wheels to process, the wheels folder is empty: $wheels_folder"
+    exit 0
+fi
 
 # Create the pip-index folder if it doesn't exist
 mkdir -p "$pip_index_folder"
+
+# Verify that the pip-index folder exists
+if [ ! -d "$pip_index_folder" ]; then
+    echo "Couldn't create the pip index folder: $pip_index_folder"
+    exit 1
+fi
 
 # Create an index.html file for the wheels folder
 general_index_file="$pip_index_folder/index.html"
@@ -43,7 +67,7 @@ for wheel_file in $(ls "$wheels_folder"/*.whl | sort -f); do
         version=$(basename "$version_file")
 
         # Add the version to the index.html file
-        link="<a href='https://raw.githubusercontent.com/think-and-dev/riscv-python-wheels/main/wheels/$version' data-requires-python='&gt;=3.10.0'>$version</a><br/>"
+        link="<a href='$whl_binary_base_url/$version' data-requires-python='&gt;=3.10.0'>$version</a><br/>"
         echo "  <li>$link</li>" >> "$index_file"
     done
     echo "</ul></body></html>" >> "$index_file"
