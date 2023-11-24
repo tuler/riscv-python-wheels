@@ -8,10 +8,12 @@ RUN apt-get update \
     liblapack-dev libssl-dev gcc g++ git make python3 \
     curl libmpc-dev \
     libmpfr-dev libgmp-dev gawk bison flex texinfo gperf \
-    libtool patchutils bc zlib1g-dev libexpat-dev libglib2.0-dev libjpeg-dev
+    libtool patchutils bc zlib1g-dev libexpat-dev libglib2.0-dev libjpeg-dev libprotobuf-dev protobuf-compiler
+
+
 
 RUN pip install --upgrade pip
 
-RUN pip install torch --index-url http://host.docker.internal:8000 --trusted-host host.docker.internal --extra-index-url https://pypi.org/simple
+RUN pip install torch --index-url https://think-and-dev.github.io/riscv-python-wheels/pip-index/ --extra-index-url https://pypi.org/simple
 
 WORKDIR /opt/cartesi/dapp
