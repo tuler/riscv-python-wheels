@@ -12,14 +12,14 @@ The available tasks are:
 
 The configuration variables are:
 
--   PIP_INDEX_URL: The URL of the pip index where the wheel files will be uploaded. Defaults to `https://think-and-dev.github.io/riscv-python-wheels/pip-index/`
--   PIP_TRUSTED_HOST: The trusted host for the pip index. Defaults to `think-and-dev.github.io`
--   PIP_OUTPUT_REL_DIR: The relative directory where the wheel files will be stored. Defaults to `./wheels`
--   PIP_REQUIREMENTS_FILE: The file containing the Python package requirements. Defaults to `packages-to-build.requirements.txt`
--   PIP_INDEX_DIR: The directory where the pip index files will be stored. Defaults to `pip-index`
--   WHL_BINARY_BASE_URL: The base URL for the binary wheel files. Defaults to `https://raw.githubusercontent.com/think-and-dev/riscv-python-wheels/main/wheels`
--   LOCAL_INDEX_PORT: The port number for serving the local pip index. Defaults to `8000`
--   TMP_LOCAL_INDEX_DIR: The temporary directory for the local pip index. Defaults to `./local-pip-index`
+-   `PIP_INDEX_URL`: The URL of the pip index where the wheel files will be uploaded. Defaults to `https://think-and-dev.github.io/riscv-python-wheels/pip-index/`
+-   `PIP_TRUSTED_HOST`: The trusted host for the pip index. Defaults to `think-and-dev.github.io`
+-   `PIP_OUTPUT_REL_DIR`: The relative directory where the wheel files will be stored. Defaults to `./wheels`
+-   `PIP_REQUIREMENTS_FILE`: The file containing the Python package requirements. Defaults to `packages-to-build.requirements.txt`
+-   `PIP_INDEX_DIR`: The directory where the pip index files will be stored. Defaults to `pip-index`
+-   `WHL_BINARY_BASE_URL`: The base URL for the binary wheel files. Defaults to `https://raw.githubusercontent.com/think-and-dev/riscv-python-wheels/main/wheels`
+-   `LOCAL_INDEX_PORT`: The port number for serving the local pip index. Defaults to `8000`
+-   `TMP_LOCAL_INDEX_DIR`: The temporary directory for the local pip index. Defaults to `./local-pip-index`
 
 In order to modify the variables used, include the new variables in the make task call. For example:
 
@@ -35,3 +35,17 @@ In order to modify the variables used, include the new variables in the make tas
 ```bash
     make build
 ```
+
+## Contributing
+
+### How to Contribute
+
+1. Fork the repository.
+2. Create a branch for your contribution.
+3. Add the wheels you wish to contribute in the `wheels` folder.
+    - Wheels can be built using the `build` task.
+4. Execute the `create-pip-index` task to generate the pip index.
+5. Submit a pull request.
+
+> [!WARNING]
+> Ensure that the wheels are placed in the `wheels` folder, and that the `create-pip-index` task was run, so the wheel can be easily installed.
