@@ -31,6 +31,7 @@ RUN apt-get update \
     libssl-dev \
     libtool \
     make \
+    ninja-build \
     patchutils \
     pkg-config \
     protobuf-compiler \
