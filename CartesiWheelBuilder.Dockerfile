@@ -3,13 +3,41 @@ FROM --platform=linux/riscv64 cartesi/python:3.10-slim-jammy
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    build-essential cmake autotools-dev autoconf automake gfortran \
-    gfortran-11 libgfortran-11-dev libgfortran5 pkg-config libopenblas-dev \
-    liblapack-dev libssl-dev gcc g++ git make python3 \
-    curl libmpc-dev \
-    libmpfr-dev libgmp-dev gawk bison flex texinfo gperf \
-    libtool patchutils bc zlib1g-dev libexpat-dev libglib2.0-dev libjpeg-dev libprotobuf-dev protobuf-compiler
-
+    autoconf \
+    automake \
+    bc \
+    bison \
+    build-essential \
+    cmake \
+    curl \
+    flex \
+    gcc \
+    g++ \
+    gawk \
+    git \
+    gfortran \
+    gfortran-11 \
+    libexpat-dev \
+    libgfortran-11-dev \
+    libgfortran5 \
+    libglib2.0-dev \
+    libgmp-dev \
+    libjpeg-dev \
+    liblapack-dev \
+    libmpc-dev \
+    libmpfr-dev \
+    libopenblas-dev \
+    libprotobuf-dev \
+    libssl-dev \
+    libtool \
+    make \
+    ninja-build \
+    patchutils \
+    pkg-config \
+    protobuf-compiler \
+    python3 \
+    texinfo \
+    zlib1g-dev
 
 
 RUN pip install --upgrade pip
