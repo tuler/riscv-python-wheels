@@ -1,11 +1,11 @@
 .PHONY: build config serve-local-index create-pip-index clean
 ########## CONFIGURATION ##########
-PIP_INDEX_URL=https://think-and-dev.github.io/riscv-python-wheels/pip-index/
-PIP_TRUSTED_HOST = think-and-dev.github.io
+PIP_INDEX_URL=https://tuler.github.io/riscv-python-wheels
+PIP_TRUSTED_HOST = tuler.github.io
 PIP_OUTPUT_REL_DIR = ./wheels
 PIP_REQUIREMENTS_FILE = packages-to-build.requirements.txt
 PIP_INDEX_DIR = pip-index
-WHL_BINARY_BASE_URL = https://raw.githubusercontent.com/think-and-dev/riscv-python-wheels/main/wheels
+WHL_BINARY_BASE_URL = https://raw.githubusercontent.com/tuler/riscv-python-wheels/tuler/wheels
 LOCAL_INDEX_PORT = 8000
 TMP_LOCAL_INDEX_DIR = ./local-pip-index
 ########## END CONFIGURATION ##########
